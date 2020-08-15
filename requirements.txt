@@ -28,7 +28,7 @@ Jinja2
 MarkupSafe
 mkl-fft
 mkl-random
-mkl-service
+mkl-service==2.3.0
 numpy
 opencv-contrib-python
 pandas
