@@ -1,5 +1,4 @@
 altgraph
-auto-py-to-exe
 bottle
 bottle-websocket
 Brotli
@@ -14,7 +13,6 @@ dash-html-components
 dash-renderer
 dash-table
 dash-table-experiments
-Eel
 Flask
 Flask-Caching
 Flask-Compress
