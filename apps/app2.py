@@ -76,7 +76,7 @@ layout = html.Div([
              html.Div([
 
         dbc.Button("Click me", id="example-button", color="primary", block=True),
-        html.Span(id="example-output", style={"vertical-align": "middle"}),
+        html.Span(id="example-output1", style={"vertical-align": "middle"}),
     ], style={"padding":30}
                  # , style={'verticalAlign': 'middle', 'width': '200px', 'display': 'inline-block'}
 
@@ -86,7 +86,7 @@ layout = html.Div([
 
 
 @app.callback(
-Output('example-output','children'),
+Output('example-output1','children'),
 #
     [Input('CHOICE_1','value'), Input('CHOICE_2', 'value'), Input('Country', 'value'), Input('example-button','n_clicks')]
 )
