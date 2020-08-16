@@ -18,7 +18,7 @@ layout = html.Div([
     dbc.Container([
     dbc.Row([
         dbc.Col(
-            html.H2("Correlation-Generator(Country)",className="text-center")
+            html.H2("Correlation-Generator(Year)",className="text-center")
         )
     ], style={'padding':20}),
     dbc.Row([
@@ -58,7 +58,7 @@ layout = html.Div([
     dbc.Row([
         dbc.Col(
             html.Div([
-                html.H4("Select Country/WORLD:", className="text-center"),
+                html.H5("Select Country/WORLD:", className="text-center"),
 
                 dcc.Dropdown(
                     id="Country",
@@ -72,12 +72,33 @@ layout = html.Div([
 
         )),
     ]),
+    dbc.Row([
+        dbc.Col(
+           html.Div([
+               html.H5("Year Selection-1:", className="text-center"),
+            dcc.Dropdown(
+                id="year_sel_1",
+                options=[],
+                className="dcc_control"
+            )
+           ])
+        ),
+    dbc.Col(
+        html.Div([
+            html.H5("Year Selection-2:", className="text-center"),
+            dcc.Dropdown(
+                id="year_sel_2",
+                options=[],
+                className="dcc_control"
+            )
+        ])
+    )], style={"padding":30}),
     # dbc.Row([
              html.Div([
 
         dbc.Button("Click me", id="example-button", color="primary", block=True),
         html.Span(id="example-output1", style={"vertical-align": "middle"}),
-    ], style={"padding":30}
+    ]
                  # , style={'verticalAlign': 'middle', 'width': '200px', 'display': 'inline-block'}
 
         )
