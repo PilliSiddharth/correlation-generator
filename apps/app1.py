@@ -10,7 +10,6 @@ import pandas as pd
 topic_options = [{'label': key, 'value':CHOICE_1[key]} for key in CHOICE_1]
 topic_options_2 = [{'label': key, 'value':CHOICE_2[key]} for key in CHOICE_2]
 
-
 topic_options_3 = [{'label':key, 'value':country[key]} for key in country]
 
 
@@ -66,7 +65,7 @@ layout = html.Div([
                     multi=False,
                     value=list(country.keys()),
                     className="dcc_control",
-                    # placeholder="Select Business Area"
+                    placeholder="Select Business Area"
                 )
             ], style={"padding":"30"}
 
@@ -76,28 +75,35 @@ layout = html.Div([
              html.Div([
 
         dbc.Button("Click me", id="example-button", color="primary", block=True),
-        html.Span(id="example-output", style={"vertical-align": "middle"}),
     ], style={"padding":30}
                  # , style={'verticalAlign': 'middle', 'width': '200px', 'display': 'inline-block'}
 
+        ),
+    dbc.Row([
+        dbc.Col(
+            html.Div([
+                html.H6(id="example-output", style={"vertical-align": "middle"}, className="text-center"),
+            ])
         )
+    ])
     # ])
     ])])
-
-
+# @app.callback(
+#     Output("Country", "options"),
+#     [Input("CHOICE_1", "value"), Input("CHOICE_2","value")]
+# )
+# def cntry_drpdwn(ch1, ch2):
+#     df1 = pd.read_csv(ch1)
+#     df2 = pd.read_csv(ch2)
+#
+#     x1 = list(df1['Entity'].unique())
+#     x2 = list(df2['Entity'].unique())
 @app.callback(
 Output('example-output','children'),
 #
     [Input('CHOICE_1','value'), Input('CHOICE_2', 'value'), Input('Country', 'value'), Input('example-button','n_clicks')]
 )
 def corr_gen(ch1, ch2, count, n):
-
-    print(type(ch2))
-
-    #
-    # str(ch1)
-    # str(ch2)
-    # str(count)
 
     df1 = pd.read_csv(ch1)
     df2 = pd.read_csv(ch2)
@@ -116,17 +122,17 @@ def corr_gen(ch1, ch2, count, n):
     X = df_all["Data-1"]
     Y = df_all["Data-2"]
 
-    pearson_coef1 = np.corrcoef(X, Y)
-    pearson_coef = pearson_coef1[1, 0]
-    int(pearson_coef)
+    try:
+        pearson_coef1 = np.corrcoef(X, Y)
+        pearson_coef = pearson_coef1[1, 0]
+        int(pearson_coef)
+    except ZeroDivisionError:
+        return "The country you choosed for the dataset is not available"
 
-    # pearson_coef = 12929292
-    # str(pearson_coef)
-    # print(pearson_coef)
     if n is None:
-        return "Not clicked."
+        pass
     else:
-        return f"Clicked {pearson_coef} times."
+        return f"The correlation value is: {pearson_coef}"
 
 
 

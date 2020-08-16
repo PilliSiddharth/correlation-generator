@@ -80,12 +80,18 @@ layout = html.Div([
              html.Div([
 
         dbc.Button("Click me", id="example-button", color="primary", block=True),
-        html.Span(id="example-output1", style={"vertical-align": "middle"}),
     ]
                  , style={"padding":30}
 
 
+        ),
+    dbc.Row([
+        dbc.Col(
+            html.Div([
+                html.H6(id="example-output1", style={"vertical-align": "middle"}, className="text-center")
+            ])
         )
+    ])
     # ])
 ])])
 # class corr_gen:
@@ -109,3 +115,33 @@ def drpdwn_2_opt(ch2):
     y_2 = list(df_2['Year'].unique())
     drdp2 = dict(zip(y_1,y_2))
     return [{"label":str(i), "value":drdp2[i]}for i in drdp2]
+
+@app.callback(
+    Output("example-output1","children"),
+    [Input("CHOICE_1","value"), Input("CHOICE_2","value"), Input("year_sel_1","value"), Input("year_sel_2", "value"),Input("example-button", "n_clicks")]
+)
+def corr_gen(cc1, cc2, yy1, yy2, n):
+    df_1 = pd.read_csv(cc1)
+    df_2 = pd.read_csv(cc2)
+
+    df_1 = df_1.loc[df_1["Year"] == yy1]
+    df_2 = df_2.loc[df_2["Year"] == yy2]
+
+    df_all = df_2.merge(df_1.drop_duplicates(), on="Entity", how="left", indicator=False)
+
+    df_all.rename(columns={df_all.columns[3]: "Data-1"}, inplace=True)
+    df_all.rename(columns={df_all.columns[6]: "Data-2"}, inplace=True)
+
+    df_all = df_all[df_all['Data-1'].notna()]
+    df_all = df_all[df_all['Data-2'].notna()]
+
+    X = np.array(df_all["Data-1"])
+    Y = np.array(df_all["Data-2"])
+
+    pearson_coef1 = np.corrcoef(X, Y)
+    pearson_coef = pearson_coef1[1,0]
+
+    if not n:
+        pass
+    else:
+        return f"The correlation value is: {pearson_coef}"
