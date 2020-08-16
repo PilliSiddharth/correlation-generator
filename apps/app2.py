@@ -99,7 +99,8 @@ layout = html.Div([
         dbc.Button("Click me", id="example-button", color="primary", block=True),
         html.Span(id="example-output1", style={"vertical-align": "middle"}),
     ]
-                 # , style={'verticalAlign': 'middle', 'width': '200px', 'display': 'inline-block'}
+                 , style={"padding":30}
+
 
         )
     # ])
