@@ -57,23 +57,6 @@ layout = html.Div([
     ]),
     dbc.Row([
         dbc.Col(
-            html.Div([
-                html.H5("Select Country/WORLD:", className="text-center"),
-
-                dcc.Dropdown(
-                    id="Country",
-                    options=topic_options_3,
-                    multi=False,
-                    value=list(country.keys()),
-                    className="dcc_control",
-                    # placeholder="Select Business Area"
-                )
-            ], style={"padding":"30"}
-
-        )),
-    ]),
-    dbc.Row([
-        dbc.Col(
            html.Div([
                html.H5("Year Selection-1:", className="text-center"),
             dcc.Dropdown(
