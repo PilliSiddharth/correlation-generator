@@ -92,7 +92,7 @@ layout = html.Div([
                 className="dcc_control"
             )
         ])
-    )], style={"padding":70}),
+    )], style={"padding":40}),
     # dbc.Row([
              html.Div([
 
