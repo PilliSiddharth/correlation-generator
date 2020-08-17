@@ -33,7 +33,7 @@ layout = html.Div([
             dbc.Col(dbc.Card(children=[html.H3(children='Access the code used to build this dashboard',
                                                className="text-center"),
                                        dbc.Button("GitHub",
-                                                  href="https://github.com/meredithwan/covid-dash-app",
+                                                  href="https://github.com/PilliSiddharth/correlation-generator",
                                                   color="primary",
                                                   className="mt-1"),
                                        ],
