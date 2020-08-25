@@ -45,3 +45,4 @@ whichcraft
 wincertstore
 zope.event
 zope.interface
+plotly-express
